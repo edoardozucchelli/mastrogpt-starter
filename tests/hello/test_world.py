@@ -5,8 +5,8 @@ import world
 def test_world():
     args = {}
     res = world.world(args)
-    assert res["output"] == "Hello, world"
+    assert res["output"] == "Hi, world"
     
     args = {"input": "Mike"}
     res = world.world(args)
-    assert res["output"] == "Hello, Mike"
+    assert res["output"] == "Hi, Mike"

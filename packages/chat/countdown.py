@@ -1,6 +1,9 @@
 #--web true
 
 import time
+import json, socket, traceback
+
+
 def count_to_zero(n):
   while n > 0:
     yield f"{n}...\n"
@@ -8,11 +11,12 @@ def count_to_zero(n):
     time.sleep(1)
   yield "Go!\n"
   
-import json, socket, traceback
+
 def stream(args, lines):
   sock = args.get("STREAM_HOST")
   port = int(args.get("STREAM_PORT"))
   out = ""
+
   with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((sock, port))
     try:
@@ -23,11 +27,13 @@ def stream(args, lines):
     except Exception as e:
       traceback.print_exc(e)
       out = str(e)
+
   return out
 
 def main(args): 
   inp = args.get("input", "")
   out = f"Input a number > 0 to countdown"
+
   if inp != "":
     try: n = int(inp)
     except: n = 0
